@@ -1,0 +1,26 @@
+### Add New Report
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+    "price": 160000,
+    "maker": "tata",
+    "model": "nexonev",
+    "mfgyear": 2022,
+    "mileage": 10000,
+    "longitude": 0,
+    "latitude": 0
+}
+
+
+### Approve an existing Report
+PATCH http://localhost:3000/reports/8
+Content-Type: application/json
+
+{
+    "approved": true
+}
+
+
+### To GET an estimated price of existing vehicle
+GET http://localhost:3000/reports/estimatedprice?maker=tata&model=nexonev&mfgyear=2022&mileage=10000&longitude=0&latitude=0

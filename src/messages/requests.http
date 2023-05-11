@@ -1,0 +1,13 @@
+### Create a New Message
+POST http://localhost:3001/messages
+Content-Type: application/json
+
+{
+    "content":"Hi Subodh"
+}
+ 
+### List All Messages
+GET http://localhost:3001/messages
+
+### Get a perticular Message respective of id
+GET http://localhost:3001/messages/88545

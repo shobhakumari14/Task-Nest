@@ -1,0 +1,48 @@
+### Create a New User
+POST http://localhost:3000/user/signup
+Content-Type: application/json
+
+{
+    "name" : "noor",
+    "email": "noor@gmail.com",
+    "password": "noor1234"
+}
+
+
+### Signin a  User
+POST http://localhost:3000/user/signin
+Content-Type: application/json
+
+{
+    "email": "shobhak@gmail.com",
+    "password": "shobha@1234"
+}
+
+
+### Get Current LoggedIn User
+GET http://localhost:3000/user/currentuser
+
+
+### SignOut User
+POST http://localhost:3000/user/signout
+
+
+### Find a  User of Respective ID
+GET http://localhost:3000/user/6
+
+
+### Find All User with Given Email 
+GET http://localhost:3000/user?email=wer@bali.com
+
+
+### Delete a User of Respective ID
+DELETE http://localhost:3000/user/3
+
+### Update a user of respective ID
+PATCH http://localhost:3000/user/5
+Content-Type: application/json
+
+{
+    "email": "Shobha@gmail.com"
+}
+
