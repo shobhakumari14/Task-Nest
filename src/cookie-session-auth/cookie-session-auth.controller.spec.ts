@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CookieSessionAuthController } from './cookie-session-auth.controller';
-import { CookieSessionAuthService } from './cookie-session-auth.service';
+import { AuthController } from './cookie-session-auth.controller';
+import { AuthService } from './cookie-session-auth.service';
 
-describe('CookieSessionAuthController', () => {
-  let controller: CookieSessionAuthController;
+describe('AuthController', () => {
+  let controller: AuthController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [CookieSessionAuthController],
-      providers: [CookieSessionAuthService],
+      controllers: [AuthController],
+      providers: [AuthService],
     }).compile();
 
-    controller = module.get<CookieSessionAuthController>(CookieSessionAuthController);
+    controller = module.get<AuthController>(AuthController);
   });
 
   it('should be defined', () => {

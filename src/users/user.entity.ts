@@ -32,11 +32,6 @@ export class UserEntity {
     @OneToMany(() => ReportEntity, (report) => report.user)
     reports: ReportEntity[];
 
-    // constructor(
-    //     @Inject(forwardRef(() => ReportEntity))
-    //   reports: ReportEntity[],
-    // ) { }
-
     @AfterInsert()
     logInsert() {
         console.log(`Hey ${this.name}! You are in our database having id:  ${this.id}`);

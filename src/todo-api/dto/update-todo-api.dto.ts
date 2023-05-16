@@ -30,6 +30,7 @@ export class UpdateTodoApiDto extends PartialType(CreateTodoApiDto) {
     content: string;
 
     @ApiProperty({})
-    @IsString()
-    status: string;
+    @IsBoolean()
+    status: boolean;
+
 }
