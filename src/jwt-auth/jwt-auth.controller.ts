@@ -10,8 +10,7 @@ import {
 import { JwtAuthService } from './jwt-auth.service';
 import { CreateUserDto } from '../users/dtos/create-user.dto';
 import { UpdateUserDto } from '../users/dtos/update-user.dto';
-import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
-
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
 @ApiTags('JWT-Auth')
 @Controller('jwtauth')

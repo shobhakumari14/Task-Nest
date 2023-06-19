@@ -11,8 +11,7 @@ import { MessageEntity } from '../messages/entities/message.entity';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => (
-        {
+      useFactory: (config: ConfigService) => ({
         type: 'postgres',
         host: config.get('POSTGRES_HOST'),
         port: config.get('POSTGRES_PORT'),
@@ -20,8 +19,7 @@ import { MessageEntity } from '../messages/entities/message.entity';
         password: config.get('POSTGRES_PASSWORD'),
         database: config.get('POSTGRES_DB'),
         entities: [UserEntity, ReportEntity, TodoEntity, MessageEntity],
-        synchronize: true, //should be false at production
-        
+        synchronize: true, //should be false at production  
       }),
     }),
   ],
