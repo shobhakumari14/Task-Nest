@@ -19,7 +19,7 @@ export class TodoEntity {
   content: string;
 
   @Column({ nullable: true})
-  status: string;
+  status: boolean;
 
   @AfterInsert()
   logInsert() {

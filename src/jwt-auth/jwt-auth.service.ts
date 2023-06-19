@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateJwtAuthDto } from './dto/create-jwt-auth.dto';
-import { UpdateJwtAuthDto } from './dto/update-jwt-auth.dto';
+import { CreateUserDto } from '../users/dtos/create-user.dto';
+import { UpdateUserDto } from '../users/dtos/update-user.dto';
 
 @Injectable()
 export class JwtAuthService {
-  create(createJwtAuthDto: CreateJwtAuthDto) {
+  create(createJwtAuthDto: CreateUserDto) {
     return 'This action adds a new jwtAuth';
   }
 
@@ -16,7 +16,7 @@ export class JwtAuthService {
     return `This action returns a #${id} jwtAuth`;
   }
 
-  update(id: number, updateJwtAuthDto: UpdateJwtAuthDto) {
+  update(id: number, updateJwtAuthDto: UpdateUserDto) {
     return `This action updates a #${id} jwtAuth`;
   }
 

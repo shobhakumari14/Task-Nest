@@ -6,8 +6,8 @@ import {
   Get,
   Session,
 } from '@nestjs/common';
-import { CreateUserDto } from '../users/dtos/create-user.dto';
 import { AuthService } from './cookie-session-auth.service';
+import { CreateUserDto } from '../users/dtos/create-user.dto';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { UserEntity } from '../users/user.entity';

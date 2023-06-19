@@ -12,14 +12,13 @@ interface ClassConstructor {
 }
 
 export function Serialize(dto: ClassConstructor) {
-    ;
+    
     return UseInterceptors(new SerializeInterceptor(dto));
 }
 
 
 export class SerializeInterceptor implements NestInterceptor {
-    constructor(private dto: any) {
-    }
+    constructor(private dto: any) { }
 
     intercept(context: ExecutionContext, handler: CallHandler) {
         // Running something before request is handled by the req. handler
