@@ -12,6 +12,8 @@
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
 <a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
 <a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img /></a>
+<a href="https://www.npmjs.com/~nestjscore" target="_blank">
+  <img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" />Developer Shobha Kumari</a>
 
 ## Description
 # Task Management API
