@@ -15,8 +15,15 @@
   <p align="center">  <a href="https://www.linkedin.com/in/shobhak" target="_blank">Connect on LinkedIn</a></p>
   <p align="center">Developer: Shobha Kumari</p>
 
-## Description
 # Task Management API
+# Key Technologies
+* NestJS: Framework for building scalable server-side applications.
+* TypeScript: Strongly typed programming language.
+* PostgreSQL: Relational database for data storage.
+* TypeORM: ORM for database interaction.
+* Swagger: API documentation.
+* Jest: Testing framework.
+* Supertest: HTTP assertions for E2E testing.
 
 ## setup
 * Install PostgreSQL
@@ -57,15 +64,6 @@ $ npm run test:cov
 
 # API Documentation
 * Access the Swagger API documentation at: http://localhost:3000/playground
-
-# Key Technologies
-* NestJS: Framework for building scalable server-side applications.
-* TypeScript: Strongly typed programming language.
-* PostgreSQL: Relational database for data storage.
-* TypeORM: ORM for database interaction.
-* Swagger: API documentation.
-* Jest: Testing framework.
-* Supertest: HTTP assertions for E2E testing.
 
 ## Support
 
