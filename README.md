@@ -18,7 +18,6 @@
 
 ## Description
 # Task Management API
-[Nest](https://github.com/nestjs/nest)
 
 ## setup
 * Install PostgreSQL
