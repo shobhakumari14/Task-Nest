@@ -34,33 +34,31 @@ export class UsersController {
   // return 'Currently no user is signedIn';
   // }
 
-
-  @ApiOperation({
-    summary: 'signOut current user',
-  })
-  @Post('signout')
- signOut(@Session() session: any) {
+  // @ApiOperation({
+  //   summary: 'logout current user',
+  // })
+  @Post('logout')
+ logOut(@Session() session: any) {
     session.userId = null;
-    return `user logged out succesfully`;
+    return true;
   }
 
-
-  @ApiOperation({
-    summary: 'get user by ID',
-  })
+  // @ApiOperation({
+  //   summary: 'get user',
+  // })
   @Get(':id')
   async findUserById(@Param('id') id: string) {
     const user = await this.userService.findOneById(parseInt(id));
     if (!user) {
-      throw new NotFoundException('User not present');
+      throw new NotFoundException('MISSING USER');
     }
     return user;
   }
 
 
-  @ApiOperation({
-    summary: 'get user by Email',
-  })
+  // @ApiOperation({
+  //   summary: 'get user',
+  // })
   @Get()
   findAllUser(@Query('email') email: string): Promise<UserEntity[]> {
     return this.userService.findByEmail(email);
@@ -68,7 +66,7 @@ export class UsersController {
 
 
   @ApiOperation({
-    summary: 'delete existing user by ID',
+    summary: 'delete existing user',
   })
   @Delete(':id')
   removeUserById(@Param('id') id: string) {
@@ -77,7 +75,7 @@ export class UsersController {
 
   
   @ApiOperation({
-    summary: 'edit user details by ID',
+    summary: 'edit user details',
   })
   @Patch(':id')
   updateUserById(@Param('id') id: string, @Body() body: UpdateUserDto) {

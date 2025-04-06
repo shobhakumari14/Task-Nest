@@ -6,25 +6,38 @@ import {
 } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-
-const CookieSession = require('cookie-session');
+import CookieParser from 'cookie-parser';
+import CookieSession from 'cookie-session';
+import * as dotenv from 'dotenv';
+dotenv.config();
+const port = process.env.PORT;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  app.use(CookieSession({ keys: ['teranaamliya'] }));
-
+  app.enableCors({
+    credentials: true,
+    origin: [
+      'http://localhost:3003',
+      'http://localhost:3001',
+    ],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+  });
+  
+  
+  app.use(CookieParser());
+  app.use(CookieSession({ keys: ['404dieueyf7huienejnfef403'] }));
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
-  //-----===NEST-SWAGGER-API-DOCUMENTATION-PART===-----
+  //-----===NEST-SWAGGER-API-DOCUMENTATION-PART===-----------------
   const configDoc = new DocumentBuilder()
-    .setTitle('NestJs-Project Application')
-    .setDescription('The API Application')
+    .setTitle('NestJs-Task-Nest Project Application')
+    .setDescription('NestJs Microservices Application/ TaskApp/ JWT-Authentication/ Cookie-Session-Authentication/ Unit-Testing/ Integration-Testing')
     .setVersion('')
     .setContact(
-      'EventHQ',
+      'Shobha',
       'https://www.eventhq.io/',
-      'shobha.kumari@eventhq.com',
+      'shobhak1411@gmail.com',
     )
     // .addTag('project', "CRUD Operations")
     .build();
@@ -39,9 +52,10 @@ async function bootstrap() {
     },
   };
   const swaggerDocSpecs = SwaggerModule.createDocument(app, configDoc);
-  SwaggerModule.setup('swagger', app, swaggerDocSpecs, collapseApiTag);
-  //-------------------------END------------------------
+  SwaggerModule.setup('playground', app, swaggerDocSpecs, collapseApiTag);
+  //-------------------------END------------------------------------------
 
-  await app.listen(3000);
+  await app.listen(port);
 }
 bootstrap();
+

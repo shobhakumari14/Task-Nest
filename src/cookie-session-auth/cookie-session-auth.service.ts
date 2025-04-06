@@ -46,6 +46,5 @@ export class AuthService {
             throw  new BadRequestException('Bad Password');;
         }
         return user;
-
     }
 }

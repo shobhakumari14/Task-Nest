@@ -5,6 +5,7 @@ import {
   Query,
   Get,
   Session,
+  ForbiddenException,
 } from '@nestjs/common';
 import { AuthService } from './cookie-session-auth.service';
 import { CreateUserDto } from '../users/dtos/create-user.dto';
@@ -14,11 +15,9 @@ import { UserEntity } from '../users/user.entity';
 import { UserDto } from '../users/dtos/user.dto';
 import { ApiTags, ApiOperation, ApiQuery } from '@nestjs/swagger';
 import { SigninUserDto } from '../users/dtos/signin-user.dto';
+import { UserRole } from '../enums/user-role.enum';
 
-export enum UserRole {
-  User = 'user',
-  Admin = 'admin',
-}
+
 
 @ApiTags('cookie-session-auth')
 @Controller('auth')
@@ -33,17 +32,14 @@ export class AuthController {
   @Post('signup')
   @ApiQuery({ name: 'role', enum: UserRole })
   async createUser(
-    @Body() body: CreateUserDto,
+    @Body() userObj: CreateUserDto,
     @Session() session: any,
-    @Query('role') role: UserRole = UserRole.User,
+    @Query('role') role: UserRole = UserRole.USER,
   ) {
-    const user = await this.AuthService.signup(
-      role,
-      body.name,
-      body.email,
-      body.password,
-    );
-    session.userId = user.id;
+    const { name, email, password } = userObj;
+    const user = await this.AuthService.signup(role, name, email, password);
+    const { id } = user;
+    session.userId = id;
     return user;
   }
 
@@ -51,21 +47,22 @@ export class AuthController {
     summary: 'signIn existing user',
   })
   @Post('signin')
-  async userSignin(@Body() body: SigninUserDto, @Session() session: any) {
-    const user = await this.AuthService.signin(body.email, body.password);
-    session.userId = user.id;
-    return user;
+  async userLogin(@Body() user: SigninUserDto, @Session() session: any) {
+    const { email, password } = user;
+    const users = await this.AuthService.signin(email, password);
+    const { id } = users;
+    session.userId = id;
+    return users;
   }
 
   @ApiOperation({
     summary: 'check loggedIn user',
   })
   @Get('currentuser')
- currentLoggedInUser(@CurrentUser() user: UserEntity) {
+ userMe(@CurrentUser() user: UserEntity) {
     if (!user) {
-      return 'Currently no user is signedIn';
+      return new ForbiddenException('forbidden');
     }
     return user;
   }
-
 }

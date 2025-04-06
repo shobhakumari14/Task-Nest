@@ -36,7 +36,7 @@ export class UsersService {
     async updateById(id: number, attributes: Partial<UserEntity>) {
         const user = await this.userRepo.findOneBy({ id });
         if (!user) {
-            throw new NotFoundException('User not Found');
+            throw new NotFoundException('User Not Found');
         }
         Object.assign(user, attributes);
         return this.userRepo.save(user);
@@ -45,7 +45,7 @@ export class UsersService {
     async removeById(id: number) {
         const user = await this.userRepo.findOneBy({ id })
         if (!user) {
-            throw new NotFoundException("User is Not Present")
+            throw new NotFoundException("User Does Not Exist")
         }
         return this.userRepo.remove(user);
     }

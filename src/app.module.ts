@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 // import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
@@ -8,13 +8,18 @@ import { ReportsModule } from './reports/reports.module';
 // import { UserEntity } from './users/user.entity';
 // import { ReportEntity } from './reports/report.entity';
 import { MessagesModule } from './messages/messages.module';
-import { TodoApiModule } from './todo-api/todo-api.module';
+import { TaskApiModule } from './task-api/task-api.module';
 import { JwtAuthModule } from './jwt-auth/jwt-auth.module';
-import { DatabaseModule } from './database/database.module';
+import { DatabaseModule } from './common/database/database.module';
 import { AuthModule } from './cookie-session-auth/cookie-session-auth.module';
-const cookieSession = require('cookie-session');
-import * as Joi from 'joi';
-
+import cookieSession from 'cookie-session';
+import Joi from 'joi';
+import { UserAgentMiddleware } from './middleware/userAgent.middleware';
+import { LoggerService } from './common/services';
+import { UtilService } from './common/util/util.service';
+import { LoggerOptions } from 'typeorm/logger/LoggerOptions';
+import { CaptchaMiddleware } from './middleware/captcha.middleware';
+const typeORMLogging: LoggerOptions = ['query'];
 
 @Module({
   imports: [
@@ -28,6 +33,7 @@ import * as Joi from 'joi';
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
         PORT: Joi.number(),
+        logging: typeORMLogging,
       }),
     }),
     // TypeOrmModule.forRootAsync({
@@ -47,25 +53,30 @@ import * as Joi from 'joi';
     //   entities : [UserEntity, ReportEntity],
     //   synchronize: true,
     // }),
-    UsersModule, 
+    UsersModule,
     ReportsModule,
     MessagesModule,
     DatabaseModule,
-    TodoApiModule,
+    TaskApiModule,
     JwtAuthModule,
-    AuthModule,   
+    AuthModule,
+    ConfigModule.forRoot(
+      {
+      isGlobal: true,
+      })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, LoggerService, UtilService],
+  exports: [LoggerService, UtilService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(
-        cookieSession({
-          keys: ['asdfgh'],
-        }),
-      )
-      .forRoutes('*');
+export class AppModule 
+{
+  configure(consumer: MiddlewareConsumer) 
+  {
+    consumer.apply(cookieSession({ keys: ['404dieueyf7huienejnfef403'] })).forRoutes('*');
+    consumer.apply(UserAgentMiddleware).forRoutes({ path: '/user', method: RequestMethod.ALL });
+    // consumer.apply(CaptchaMiddleware).forRoutes({ path: '/messages', method: RequestMethod.ALL });
   }
 }
+
+// write a code for setting up server session for 5min for that five min user will get access  to entre the form details and after the expire of session generate captcha and verify it and let them to fill forms?

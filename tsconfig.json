@@ -20,5 +20,6 @@
     // "paths": { "@/*": ["./src/*"] },
     // "typeRoots": ["./node_modules/@types"],
     // "types": ["node"]
+    "esModuleInterop": true /* added to let joi work with default import or else do this import * as Joi from 'joi'*/
   }
 }

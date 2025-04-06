@@ -23,8 +23,12 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
+# Task Management API
+[Nest](https://github.com/nestjs/nest)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## setup
+* Install PostgreSQL
+* create database task_nest in Postgres
 
 ## Installation
 
@@ -46,6 +50,7 @@ $ npm run start:prod
 ```
 
 ## Test
+* Unit Tests
 
 ```bash
 # unit tests
@@ -57,6 +62,18 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+# API Documentation
+* Access the Swagger API documentation at: http://localhost:3000/playground
+
+# Key Technologies
+* NestJS: Framework for building scalable server-side applications.
+* TypeScript: Strongly typed programming language.
+* PostgreSQL: Relational database for data storage.
+* TypeORM: ORM for database interaction.
+* Swagger: API documentation.
+* Jest: Testing framework.
+* Supertest: HTTP assertions for E2E testing.
 
 ## Support
 

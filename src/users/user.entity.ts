@@ -47,3 +47,4 @@ export class UserEntity {
         console.log(`Removed the ${this.role} of id:  ${this.id}`);
     }
 }
+

@@ -44,3 +44,6 @@ export class ReportsController {
         return this.reportService.createEstimatedPrice(query);
     }
 }
+
+
+

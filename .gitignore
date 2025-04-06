@@ -1,6 +1,6 @@
 # ## env Files
-# .env.development
-# .env.test
+.env.development
+.env.test
 
 
 

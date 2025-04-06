@@ -6,7 +6,7 @@ import { UsersService } from './users.service';
 import { UserEntity } from './user.entity';
 // import { SerializeInterceptor } from '../interceptors/serialize.interceptor';
 // import { CurrentUserInterceptor } from './interceptors/current-user.interceptors';
-import { CurrentUserMiddleware } from './middleware/current-user.middleware';
+import { CurrentUserMiddleware } from '../middleware/current-user.middleware';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -25,7 +25,8 @@ import { CurrentUserMiddleware } from './middleware/current-user.middleware';
   exports:[UsersService]
 })
 export class UsersModule {
-  configure(consumer: MiddlewareConsumer){
-consumer.apply(CurrentUserMiddleware).forRoutes('*')
+  configure(consumer: MiddlewareConsumer)
+  {
+     consumer.apply(CurrentUserMiddleware).forRoutes('*')
   }
  }
