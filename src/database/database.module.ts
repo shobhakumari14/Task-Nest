@@ -5,6 +5,7 @@ import { ReportEntity } from '../reports/report.entity';
 import { TodoEntity } from '../todo-api/entities/todo-api.entity';
 import { UserEntity } from '../users/user.entity';
 import { MessageEntity } from '../messages/entities/message.entity';
+import { TaskEntity } from '../task-nest-api/entities';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { MessageEntity } from '../messages/entities/message.entity';
         username: config.get('POSTGRES_USER'),
         password: config.get('POSTGRES_PASSWORD'),
         database: config.get('POSTGRES_DB'),
-        entities: [UserEntity, ReportEntity, TodoEntity, MessageEntity],
+        entities: [UserEntity, ReportEntity, TodoEntity, MessageEntity, TaskEntity],
         synchronize: true, //should be false at production  
       }),
     }),
