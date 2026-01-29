@@ -20,7 +20,7 @@ import { TaskEntity } from '../task-nest-api/entities';
         password: config.get('POSTGRES_PASSWORD'),
         database: config.get('POSTGRES_DB'),
         entities: [UserEntity, ReportEntity, TodoEntity, MessageEntity, TaskEntity],
-        synchronize: true, //should be false at production  
+        synchronize: false, //should be false at production
       }),
     }),
   ],
