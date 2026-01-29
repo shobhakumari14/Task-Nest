@@ -24,7 +24,7 @@ export class UpdateUserDto {
     @ApiProperty({
         description: 'Write your name',
         example: 'Aarav singh',
-        type: IS_EMAIL,
+        type: String,
     })
     @IsEmail()
     @IsOptional()

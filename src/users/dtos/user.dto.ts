@@ -31,7 +31,7 @@ export class UserDto {
     @ApiProperty({
         description: 'Your email',
         example: 'abc@gmail.com',
-        type: IS_EMAIL,
+        type: String,
     })
     @Expose()
     email: string;

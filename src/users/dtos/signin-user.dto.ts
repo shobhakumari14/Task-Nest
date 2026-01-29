@@ -5,7 +5,7 @@ export class SigninUserDto {
   @ApiProperty({
     description: 'Enter your user email',
     example: 'abc@gmail.com',
-    type: IS_EMAIL,
+    type: String,
 })
   @IsEmail()
   email: string;
