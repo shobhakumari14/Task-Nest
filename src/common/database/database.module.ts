@@ -9,18 +9,21 @@ import { MessageEntity } from '../../messages/entities/message.entity';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'postgres',
-        host: config.get('POSTGRES_HOST'),
-        port: config.get('POSTGRES_PORT'),
-        username: config.get('POSTGRES_USER'),
-        password: config.get('POSTGRES_PASSWORD'),
-        database: config.get('POSTGRES_DB'),
-        entities: [UserEntity, ReportEntity, TaskEntity, MessageEntity],
-        synchronize: true, //should be false at production  
-      }),
+      useFactory: (config: ConfigService) => {
+        const isProduction = process.env.NODE_ENV === 'production';
+
+        return {
+          type: 'postgres',
+          host: config.get<string>('POSTGRES_HOST'),
+          port: Number(config.get('POSTGRES_PORT')),
+          username: config.get<string>('POSTGRES_USER'),
+          password: config.get<string>('POSTGRES_PASSWORD'),
+          database: config.get<string>('POSTGRES_DB'),
+          entities: [UserEntity, ReportEntity, TaskEntity, MessageEntity],
+          synchronize: !isProduction, // ✅ true in dev/docker, false in prod
+        };
+      },
     }),
   ],
 })
