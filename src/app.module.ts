@@ -8,7 +8,7 @@ import { ReportsModule } from './reports/reports.module';
 // import { UserEntity } from './users/user.entity';
 // import { ReportEntity } from './reports/report.entity';
 import { MessagesModule } from './messages/messages.module';
-import { TaskApiModule } from './task-api/task-api.module';
+import { TaskApiModule } from './task-nest-api/task-api.module';
 import { JwtAuthModule } from './jwt-auth/jwt-auth.module';
 import { DatabaseModule } from './common/database/database.module';
 import { AuthModule } from './cookie-session-auth/cookie-session-auth.module';

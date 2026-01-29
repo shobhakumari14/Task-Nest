@@ -20,7 +20,7 @@ export enum TaskStatus {
   Completed ='2',
 }
 
-@ApiTags('task-Api')
+@ApiTags('Task-Api')
 @Controller('task')
 export class TaskApiController {
   constructor(private readonly todosService: TaskApiService) {}

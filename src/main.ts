@@ -10,7 +10,7 @@ import CookieParser from 'cookie-parser';
 import CookieSession from 'cookie-session';
 import * as dotenv from 'dotenv';
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT ?? 3000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -55,6 +55,7 @@ async function bootstrap() {
   SwaggerModule.setup('playground', app, swaggerDocSpecs, collapseApiTag);
   //-------------------------END------------------------------------------
 
+  console.log(`Application is running on: http://localhost:${port}`);
   await app.listen(port);
 }
 bootstrap();
